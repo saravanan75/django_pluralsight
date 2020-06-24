@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electronics Page</title>
+</head>
+<body>
+
+<h1>Hello there, globomantics e-commerce store front Electronics pages coming here</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Item</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+      <tr>
+        <td>{{ item }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br>
+<br>
+{% if items.has_other_pages %}
+<table>
+  <tr class="pagination">
+    {% if items.has_previous %}
+      <td><a href="?page={{ items.previous_page_number }}">&laquo;</a></td>
+    {% else %}
+      <td class="disabled"><span>&laquo;</span></td>
+    {% endif %}
+    {% for i in items.paginator.page_range %}
+      {% if items.number == i %}
+        <td class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></td>
+      {% else %}
+        <td><a href="?page={{ i }}">{{ i }}</a></td>
+      {% endif %}
+    {% endfor %}
+    {% if items.has_next %}
+      <td><a href="?page={{ items.next_page_number }}">&raquo;</a></td>
+    {% else %}
+      <td class="disabled"><span>&raquo;</span></td>
+    {% endif %}
+  </tr>
+{% endif %}
+</table>
+
+<table>
+{% if is_paginated %}
+<tr class="pagination">
+{% if page_obj.has_previous %}
+    <td>
+        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+    </td>
+{% endif %}
+    <td class="">
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+    </td>
+{% if page_obj.has_next %}
+    <td>
+        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+    </td>
+{% endif %}
+</tr>
+{% endif %}
+</table>
+</body>
+</html>
