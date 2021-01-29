@@ -1,0 +1,21 @@
+<html>
+<body>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Item </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+      <tr>
+        <td>{{ item }} </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="/logout">Logout</a>
+</body>
+</html>
